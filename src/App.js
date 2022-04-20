@@ -13,12 +13,14 @@ function App() {
   return (
     <>
       <Header />
-      <Container>
-        <Routes>
-          <Route path='/' element={<HomeScreen />} />
-          <Route path='/create' element={<CreateScreen />} />
-        </Routes>
-      </Container>
+      <main className='py-3'>
+        <Container>
+          <Routes>
+            <Route path='/' element={<HomeScreen />} />
+            <Route path='/create' element={<CreateScreen />} />
+          </Routes>
+        </Container>
+      </main>
       <Footer />
     </>
   );

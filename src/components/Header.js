@@ -6,7 +6,7 @@ const Header = () => {
     return (
         // collapseOnSelect bunu yazinca hamburger menu de herhangi bir seye tiklayinca eski haline geliyor. yani hamburger menu kapaniyor
         <header>
-            <Navbar bg="primary" variant='dark' expand="lg" collapseOnSelect>
+            <Navbar bg="light" variant='light' expand="lg" collapseOnSelect>
                 <Container fluid>
                     <LinkContainer to='/'>
                         <Navbar.Brand href="#">Memories Box</Navbar.Brand>
