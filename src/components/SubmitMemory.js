@@ -21,7 +21,7 @@ const SubmitMemory = () => {
             <Form onSubmit={(e) => {
                 e.preventDefault()
                 api.createMemory(memoryData) // axios icinde tanimladigim fonksiyona memoryData'yi gonderiyorum
-                navigate('/'); // ana sayfaya donmesi icin
+                navigate('/'); // ana sayfaya donmesi icin.
             }} >
                 <Form.Group>
                     <h1>Create a memory</h1>
