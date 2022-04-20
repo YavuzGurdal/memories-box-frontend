@@ -1,11 +1,14 @@
 import { React, useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import ReactFileBase64 from 'react-file-base64'
+import { useNavigate } from 'react-router-dom'; // ana sayfaya donmesi icin
 
 import * as api from '../axios/index.js' // axios icindeki index.js icindeki herseyi api olarak import ediyorum. lazim olani kullaniyorum
 
 
 const SubmitMemory = () => {
+    const navigate = useNavigate(); // ana sayfaya donmesi icin
+
     const [memoryData, setMemoryData] = useState({
         title: '',
         content: '',
@@ -18,11 +21,12 @@ const SubmitMemory = () => {
             <Form onSubmit={(e) => {
                 e.preventDefault()
                 api.createMemory(memoryData) // axios icinde tanimladigim fonksiyona memoryData'yi gonderiyorum
+                navigate('/'); // ana sayfaya donmesi icin
             }} >
                 <Form.Group>
                     <h1>Create a memory</h1>
                 </Form.Group>
-                <Form.Group className='mt-3'>
+                <Form.Group className='mt-3' style={{ letterSpacing: '1px' }}>
                     <Form.Label>Title</Form.Label>
                     <Form.Control
                         name='title'
@@ -31,14 +35,14 @@ const SubmitMemory = () => {
                     // ...memoryData yazip butun degerleri aliyorum. virgulden sonra degistirmek istedigim degeri degistiriyorum
                     ></Form.Control>
                 </Form.Group>
-                <Form.Group className='mt-3'>
+                <Form.Group className='mt-3' style={{ letterSpacing: '1px' }}>
                     <Form.Label>Author</Form.Label>
                     <Form.Control name='creator' type='text'
                         onChange={(e) => setMemoryData({ ...memoryData, creator: e.target.value })}
                     // ...memoryData yazip butun degerleri aliyorum. virgulden sonra degistirmek istedigim degeri degistiriyorum
                     ></Form.Control>
                 </Form.Group>
-                <Form.Group className='mt-3'>
+                <Form.Group className='mt-3' style={{ letterSpacing: '1px' }}>
                     <Form.Label>Memory</Form.Label>
                     <Form.Control name='content' type='text' as='textarea' rows='3'
                         onChange={(e) => setMemoryData({ ...memoryData, content: e.target.value })}
