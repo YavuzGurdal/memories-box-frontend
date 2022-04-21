@@ -4,6 +4,8 @@ import { Card } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { MdModeEdit, MdDelete } from 'react-icons/md';
 
+import { deleteMemory } from '../axios/index.js';
+
 const Memory = ({ memory }) => { // HomeScreen den props la gonderilen memory'yi yakaliyorum
     return (
         <>
@@ -18,10 +20,12 @@ const Memory = ({ memory }) => { // HomeScreen den props la gonderilen memory'yi
                     <Card.Subtitle>{moment(memory.createdAt).fromNow()}</Card.Subtitle>
                 </Card.Body>
                 <Card.Footer className='bg-white pb-0 d-flex justify-content-between'>
-                    <LinkContainer to='/' style={{ cursor: 'pointer' }}>
+                    <LinkContainer to={`/update/${memory._id}`} style={{ cursor: 'pointer' }}>
                         <MdModeEdit size={25} color='#0d6efd' />
                     </LinkContainer>
-                    <MdDelete style={{ cursor: 'pointer' }} size={25} color='#dc3545' />
+                    <MdDelete style={{ cursor: 'pointer' }} size={25} color='#dc3545'
+                        onClick={() => deleteMemory(memory._id)}
+                    />
                 </Card.Footer>
             </Card>
         </>

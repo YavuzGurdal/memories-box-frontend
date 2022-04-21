@@ -2,10 +2,12 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 import HomeScreen from './Screens/HomeScreen';
 import CreateScreen from './Screens/CreateScreen';
+import UpdateScreen from './Screens/UpdateScreen';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 import { Container } from 'react-bootstrap'
+
 
 
 
@@ -18,6 +20,7 @@ function App() {
           <Routes>
             <Route path='/' element={<HomeScreen />} />
             <Route path='/create' element={<CreateScreen />} />
+            <Route path='/update/:id' element={<UpdateScreen />} />
           </Routes>
         </Container>
       </main>
