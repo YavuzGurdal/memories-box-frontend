@@ -15,7 +15,7 @@ const Memory = ({ memory }) => { // HomeScreen den props la gonderilen memory'yi
 
     return (
         <>
-            <Card className='rounded pb-3 my-3' style={{ width: '18rem' }}>
+            <Card className='rounded pb-3 my-3 mx-auto' style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={memory.image} />
                 <Card.Body>
                     <Card.Title style={{ color: 'darkblue' }} className='text-capitalize' >{memory.title}</Card.Title>

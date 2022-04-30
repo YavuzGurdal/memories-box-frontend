@@ -41,7 +41,7 @@ const HomeScreen = () => {
 
     return (
         <>
-            <h1>Latest Memories</h1>
+            <h1 className='text-center'>Latest Memories</h1>
 
             {
                 !memories.length ?

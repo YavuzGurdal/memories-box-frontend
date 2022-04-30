@@ -31,14 +31,17 @@ const UpdateMemory = ({ id }) => {
 
     return (
         <>
-            <Form onSubmit={(e) => {
-                e.preventDefault()
-                dispatch(updateMemory(id, memoryData))
-                navigate('/'); // ana sayfaya donmesi icin.
+            <Form
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    dispatch(updateMemory(id, memoryData))
+                    navigate('/'); // ana sayfaya donmesi icin.
 
-                // reduxdan once
-                //updateMemory(id, memoryData) // axios icinde tanimladigim fonksiyona id'yi ve memoryData'yi gonderiyorum
-            }} >
+                    // reduxdan once
+                    //updateMemory(id, memoryData) // axios icinde tanimladigim fonksiyona id'yi ve memoryData'yi gonderiyorum
+                }}
+                autoComplete='off'
+            >
                 <Form.Group>
                     <h1>Update memory</h1>
                 </Form.Group>

@@ -22,16 +22,19 @@ const SubmitMemory = () => {
 
     return (
         <>
-            <Form onSubmit={(e) => {
-                e.preventDefault()
+            <Form
+                onSubmit={(e) => {
+                    e.preventDefault()
 
-                dispatch(createMemory(memoryData)) // memoryData'yi createMemory'ye gonderiyoruz. islemler orda yapiliyor
+                    dispatch(createMemory(memoryData)) // memoryData'yi createMemory'ye gonderiyoruz. islemler orda yapiliyor
 
-                navigate('/'); // ana sayfaya donmesi icin.
+                    navigate('/'); // ana sayfaya donmesi icin.
 
-                //redux dan once
-                // api.createMemory(memoryData) // axios icinde tanimladigim fonksiyona memoryData'yi gonderiyorum
-            }} >
+                    //redux dan once
+                    // api.createMemory(memoryData) // axios icinde tanimladigim fonksiyona memoryData'yi gonderiyorum
+                }}
+                autoComplete='off'
+            >
                 <Form.Group>
                     <h1>Create a memory</h1>
                 </Form.Group>
