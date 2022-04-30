@@ -11,8 +11,8 @@ export const fetchMemories = async () => await API.get('/memories')
 export const fetchMemory = async (id) => await API.get(`/memories/${id}`)
 
 // CREATE MEMORY
-export const createMemory = async (newMemory) => {
-    await API.post('/memories', newMemory) //  server a post istegi gonderiyoruz. server da post metodu ile newMemory'yi db ye gonderiyor
+export const createMemory = async (newMemory) => { // arrow fonksiyonda {} kullanirsak mutlaka return yazmaliyiz
+    return await API.post('/memories', newMemory) //  server a post istegi gonderiyoruz. server da post metodu ile newMemory'yi db ye gonderiyor
 }
 
 // UPDATE MEMORY
@@ -21,5 +21,4 @@ export const updateMemory = async (id, updatedMemory) => await API.put(`/memorie
 
 // DELETE MEMORY
 export const deleteMemory = async (id) => await API.delete(`/memories/${id}`) // server a delete istegi gonderiyoruz. server da delete metodu ile Memory'yi db'den siliyor
-
 

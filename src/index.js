@@ -18,7 +18,7 @@ const reducer = combineReducers({ // tum reducerlari burda birlestiriyorum. yani
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk))) // bunlar her redux kurulumunda benzer sekilde oluyor
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-// App i provider ile sariyorum ve store a yukarda tanimladigim store u atiyorum
+// App i provider ile sariyorum ve store'a yukarda tanimladigim store u atiyorum
 root.render(
   <React.StrictMode>
     <BrowserRouter>

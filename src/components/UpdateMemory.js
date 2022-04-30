@@ -3,11 +3,15 @@ import { Form, Button } from 'react-bootstrap'
 import ReactFileBase64 from 'react-file-base64'
 import { useNavigate } from 'react-router-dom'; // ana sayfaya donmesi icin
 
-import { updateMemory, fetchMemory } from '../axios/index.js' // axios icindeki index.js icindeki herseyi api olarak import ediyorum. lazim olani kullaniyorum
+import { useDispatch } from 'react-redux';
+import { updateMemory } from '../actions/memoryActions.js';
+
+import { fetchMemory } from '../axios/index.js' // axios icindeki index.js icindeki herseyi api olarak import ediyorum. lazim olani kullaniyorum
 
 
 const UpdateMemory = ({ id }) => {
     const navigate = useNavigate(); // ana sayfaya donmesi icin
+    const dispatch = useDispatch()
 
     const [memoryData, setMemoryData] = useState({
         title: '',
@@ -21,6 +25,7 @@ const UpdateMemory = ({ id }) => {
             const { data } = await fetchMemory(id) // response dan gelen data yi direk bu sekilde alabiliyorum
             setMemoryData(data)
         }
+
         getMemory()
     }, [id])
 
@@ -28,8 +33,11 @@ const UpdateMemory = ({ id }) => {
         <>
             <Form onSubmit={(e) => {
                 e.preventDefault()
-                updateMemory(id, memoryData) // axios icinde tanimladigim fonksiyona id'yi ve memoryData'yi gonderiyorum
+                dispatch(updateMemory(id, memoryData))
                 navigate('/'); // ana sayfaya donmesi icin.
+
+                // reduxdan once
+                //updateMemory(id, memoryData) // axios icinde tanimladigim fonksiyona id'yi ve memoryData'yi gonderiyorum
             }} >
                 <Form.Group>
                     <h1>Update memory</h1>

@@ -4,9 +4,15 @@ import { Card } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { MdModeEdit, MdDelete } from 'react-icons/md';
 
-import { deleteMemory } from '../axios/index.js';
+import { useDispatch } from 'react-redux';
+import { deleteMemory } from '../actions/memoryActions';
+
+// reduxdan once
+//import { deleteMemory } from '../axios/index.js';
 
 const Memory = ({ memory }) => { // HomeScreen den props la gonderilen memory'yi yakaliyorum
+    const dispatch = useDispatch()
+
     return (
         <>
             <Card className='rounded pb-3 my-3' style={{ width: '18rem' }}>
@@ -24,7 +30,8 @@ const Memory = ({ memory }) => { // HomeScreen den props la gonderilen memory'yi
                         <MdModeEdit size={25} color='#0d6efd' />
                     </LinkContainer>
                     <MdDelete style={{ cursor: 'pointer' }} size={25} color='#dc3545'
-                        onClick={() => deleteMemory(memory._id)}
+                        onClick={() => { dispatch(deleteMemory(memory._id)) }}
+                    // reduxadan once // onClick={() => deleteMemory(memory._id)}
                     />
                 </Card.Footer>
             </Card>

@@ -3,11 +3,15 @@ import { Form, Button } from 'react-bootstrap'
 import ReactFileBase64 from 'react-file-base64'
 import { useNavigate } from 'react-router-dom'; // ana sayfaya donmesi icin
 
-import * as api from '../axios/index.js' // axios icindeki index.js icindeki herseyi api olarak import ediyorum. lazim olani kullaniyorum
+// redux dan once
+//import * as api from '../axios/index.js' // axios icindeki index.js icindeki herseyi api olarak import ediyorum. lazim olani kullaniyorum
 
+import { useDispatch } from 'react-redux';
+import { createMemory } from '../actions/memoryActions.js';
 
 const SubmitMemory = () => {
     const navigate = useNavigate(); // ana sayfaya donmesi icin
+    const dispatch = useDispatch()
 
     const [memoryData, setMemoryData] = useState({
         title: '',
@@ -20,8 +24,13 @@ const SubmitMemory = () => {
         <>
             <Form onSubmit={(e) => {
                 e.preventDefault()
-                api.createMemory(memoryData) // axios icinde tanimladigim fonksiyona memoryData'yi gonderiyorum
+
+                dispatch(createMemory(memoryData)) // memoryData'yi createMemory'ye gonderiyoruz. islemler orda yapiliyor
+
                 navigate('/'); // ana sayfaya donmesi icin.
+
+                //redux dan once
+                // api.createMemory(memoryData) // axios icinde tanimladigim fonksiyona memoryData'yi gonderiyorum
             }} >
                 <Form.Group>
                     <h1>Create a memory</h1>
