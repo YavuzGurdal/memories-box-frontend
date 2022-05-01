@@ -10,9 +10,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import memoriesReducer from './reducers/memoriesReducer'; // reducer icindeki memories'i bu guncelleyecek
+import usersReducer from './reducers/usersReducer';
 
 const reducer = combineReducers({ // tum reducerlari burda birlestiriyorum. yani combine ediyorum. sonra da store icine gondermis oluyorum
-  memories: memoriesReducer  // bu global memories
+  memories: memoriesReducer, // bu global memories
+  user: usersReducer,
 })
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk))) // bunlar her redux kurulumunda benzer sekilde oluyor

@@ -22,3 +22,6 @@ export const updateMemory = async (id, updatedMemory) => await API.put(`/memorie
 // DELETE MEMORY
 export const deleteMemory = async (id) => await API.delete(`/memories/${id}`) // server a delete istegi gonderiyoruz. server da delete metodu ile Memory'yi db'den siliyor
 
+// CREATE USER
+export const signUp = async (formData) => await API.post('/users/signup', formData) // server a post istegi gonderiyoruz. server da post metodu ile userData'yi db ye gonderiyor
+
