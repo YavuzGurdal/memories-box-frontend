@@ -20,3 +20,8 @@ code {
   color: #6c757d !important;
   border-color: #6c757d !important;
 }
+
+.form-label,
+.form-control {
+  letter-spacing: 1.5px;
+}

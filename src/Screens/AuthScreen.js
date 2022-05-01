@@ -35,7 +35,7 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
                                 <Form className='align-content-center mt-3'>
                                     <h1 className='text-center mb-3 text-capitalize'>Log In</h1>
 
-                                    <Form.Group className='mb-3' style={{ letterSpacing: '1px' }}>
+                                    <Form.Group className='mb-3'>
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control
                                             type='email'
@@ -44,7 +44,7 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
                                         </Form.Control>
                                     </Form.Group>
 
-                                    <Form.Group className='mb-3' style={{ letterSpacing: '1px' }}>
+                                    <Form.Group className='mb-3'>
                                         <Form.Label>Password</Form.Label>
                                         <Form.Control
                                             type='password'
@@ -53,9 +53,9 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
                                         </Form.Control>
                                     </Form.Group>
 
-                                    <Button style={{ letterSpacing: '1px' }} type='submit' className='my-3 w-100' size="lg" >Submit</Button>
+                                    <Button style={{ letterSpacing: '1.5px' }} type='submit' className='my-3 w-100' size="lg" >Submit</Button>
 
-                                    <p className='text-center mb-3 fs-4' style={{ letterSpacing: '1px' }}>
+                                    <p className='text-center mb-3 fs-4' style={{ letterSpacing: '1.5px' }}>
                                         <Form.Text>
                                             Don't Have an Account?
                                             <span
@@ -82,7 +82,7 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
 
                                     {error && <Message>{error}</Message>}
 
-                                    <Form.Group style={{ display: 'flex', letterSpacing: '1px' }} className='mb-3'>
+                                    <Form.Group style={{ display: 'flex' }} className='mb-3'>
                                         <Form.Control
                                             style={{ marginRight: '10px' }}
                                             type='text'
@@ -99,7 +99,7 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
                                         </Form.Control>
                                     </Form.Group>
 
-                                    <Form.Group className='mb-3' style={{ letterSpacing: '1px' }}>
+                                    <Form.Group className='mb-3'>
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control
                                             type='email'
@@ -109,7 +109,7 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
                                         </Form.Control>
                                     </Form.Group>
 
-                                    <Form.Group className='mb-3' style={{ letterSpacing: '1px' }}>
+                                    <Form.Group className='mb-3'>
                                         <Form.Label>Password</Form.Label>
                                         <Form.Control
                                             type='password'
@@ -119,9 +119,10 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
                                         </Form.Control>
                                     </Form.Group>
 
-                                    <Form.Group className='mb-3' style={{ letterSpacing: '1px' }}>
+                                    <Form.Group className='mb-3'>
                                         <Form.Label>Confirm Password</Form.Label>
                                         <Form.Control
+                                            style={{ letterSpacing: '1.5px' }}
                                             type='password'
                                             placeholder='Confirm Password'
                                             onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
@@ -129,9 +130,9 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
                                         </Form.Control>
                                     </Form.Group>
 
-                                    <Button style={{ letterSpacing: '1px' }} type='submit' className='my-3 w-100' size="lg" >Submit</Button>
+                                    <Button style={{ letterSpacing: '1.5px' }} type='submit' className='my-3 w-100' size="lg" >Submit</Button>
 
-                                    <p className='text-center mb-3 fs-4' style={{ letterSpacing: '1px' }}>
+                                    <p className='text-center mb-3 fs-4' style={{ letterSpacing: '1.5px' }}>
                                         <Form.Text>
                                             Already Have an Account?
                                             <span

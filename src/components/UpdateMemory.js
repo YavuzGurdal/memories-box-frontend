@@ -45,7 +45,7 @@ const UpdateMemory = ({ id }) => {
                 <Form.Group>
                     <h1>Update memory</h1>
                 </Form.Group>
-                <Form.Group className='mt-3' style={{ letterSpacing: '1px' }}>
+                <Form.Group className='mt-3'>
                     <Form.Label>Title</Form.Label>
                     <Form.Control
                         name='title'
@@ -55,7 +55,7 @@ const UpdateMemory = ({ id }) => {
                     // ...memoryData yazip butun degerleri aliyorum. virgulden sonra degistirmek istedigim degeri degistiriyorum
                     ></Form.Control>
                 </Form.Group>
-                <Form.Group className='mt-3' style={{ letterSpacing: '1px' }}>
+                <Form.Group className='mt-3'>
                     <Form.Label>Author</Form.Label>
                     <Form.Control name='creator' type='text'
                         value={memoryData.creator}
@@ -63,7 +63,7 @@ const UpdateMemory = ({ id }) => {
                     // ...memoryData yazip butun degerleri aliyorum. virgulden sonra degistirmek istedigim degeri degistiriyorum
                     ></Form.Control>
                 </Form.Group>
-                <Form.Group className='mt-3' style={{ letterSpacing: '1px' }}>
+                <Form.Group className='mt-3'>
                     <Form.Label>Memory</Form.Label>
                     <Form.Control name='content' type='text' as='textarea' rows='3'
                         value={memoryData.content}
@@ -71,7 +71,7 @@ const UpdateMemory = ({ id }) => {
                     // ...memoryData yazip butun degerleri aliyorum. virgulden sonra degistirmek istedigim degeri degistiriyorum
                     ></Form.Control>
                 </Form.Group>
-                <Form.Group className='mt-3'>
+                <Form.Group className='mt-3' style={{ letterSpacing: '1.5px' }}>
                     <ReactFileBase64 type='file' multiple={false}
                         value={memoryData.image}
                         onDone={({ base64 }) => setMemoryData({ ...memoryData, image: base64 })}
@@ -79,7 +79,7 @@ const UpdateMemory = ({ id }) => {
                     />
                     {/* multiple={false} bu true olursa birden fazla resim secilebiliyor */}
                 </Form.Group>
-                <Button type='submit' className='mt-3 w-100' size="lg" >Submit</Button>
+                <Button type='submit' className='mt-3 w-100' size="lg" style={{ letterSpacing: '1.5px' }}>Submit</Button>
             </Form>
 
         </>

@@ -1,4 +1,4 @@
-import { AUTH, SIGNUP_FAIL } from "../constants/actionsConstants.js";
+import { AUTH, SIGNUP_FAIL, LOGOUT, LOGOUT_FAIL } from "../constants/actionsConstants.js";
 
 const usersReducer = (state = { userData: null }, action) => { // bu sekildede yazabiliriz
     switch (action.type) {
@@ -7,6 +7,13 @@ const usersReducer = (state = { userData: null }, action) => { // bu sekildede y
             return { ...state, userData: action.payload }
 
         case SIGNUP_FAIL:
+            return { error: action.payload }
+
+        case LOGOUT: // serverdan bir cevap geldiyse ne yapilacagini yaziyoruz
+            localStorage.removeItem('user')
+            return { ...state, userData: null } // state'in hepsini aliyorum userDatayi degistiriyorum
+
+        case LOGOUT_FAIL:
             return { error: action.payload }
 
         default:
