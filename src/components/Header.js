@@ -75,7 +75,7 @@ const Header = () => {
                                         <>
                                             <LinkContainer to='/auth' >
                                                 <Nav.Link>
-                                                    <Button variant='outline-info' ><FiLogIn size={20} />&nbsp; Login</Button>
+                                                    <Button variant='outline-info' ><FiLogIn size={20} />&nbsp; Sign In</Button>
                                                 </Nav.Link>
                                             </LinkContainer>
                                         </>

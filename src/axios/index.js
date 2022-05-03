@@ -25,5 +25,8 @@ export const deleteMemory = async (id) => await API.delete(`/memories/${id}`) //
 // CREATE USER
 export const signUp = async (formData) => await API.post('/users/signup', formData) // server a post istegi gonderiyoruz. server da post metodu ile userData'yi db ye gonderiyor
 
+// LOGIN
+export const signIn = async (formData) => await API.post('/users/signin', formData)
+
 // LOGOUT
 export const logOut = async (id) => await API.get(`/users/logout/${id}`)

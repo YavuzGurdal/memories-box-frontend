@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'; // ana sayfaya donmesi icin
 import Message from '../components/Message'
 
 import { useDispatch, useSelector } from 'react-redux' // useSelector ile butun global state'lere ulasabilirim
-import { signup } from '../actions/userActions'
+import { signup, signin } from '../actions/userActions'
 
 const AuthScreen = () => { // bu Route'dan propsla geliyor.
     const navigate = useNavigate(); // ana sayfaya donmesi icin
@@ -32,14 +32,26 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
                     {
                         login ?
                             (
-                                <Form className='align-content-center mt-3'>
-                                    <h1 className='text-center mb-3 text-capitalize'>Log In</h1>
+                                <Form
+                                    onSubmit={(e) => {
+                                        e.preventDefault()
+                                        if (login) {
+                                            dispatch(signin(form, navigate))
+                                            //navigate('/'); // ana sayfaya donmesi icin.
+                                        }
+                                    }}
+                                    className='align-content-center mt-3'
+                                >
+                                    <h1 className='text-center mb-3 text-capitalize'>Sign In</h1>
+
+                                    {error && <Message>{error}</Message>}
 
                                     <Form.Group className='mb-3'>
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control
                                             type='email'
                                             placeholder='Enter your E-mail address'
+                                            onChange={(e) => setForm({ ...form, email: e.target.value })}
                                         >
                                         </Form.Control>
                                     </Form.Group>
@@ -49,6 +61,7 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
                                         <Form.Control
                                             type='password'
                                             placeholder='Enter Password'
+                                            onChange={(e) => setForm({ ...form, password: e.target.value })}
                                         >
                                         </Form.Control>
                                     </Form.Group>
@@ -138,7 +151,7 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
                                             <span
                                                 onClick={(e) => setLogin(!login)}
                                                 style={{ color: '#0d6efd', cursor: 'pointer' }}
-                                            > Login
+                                            > Sign In
                                             </span>
                                         </Form.Text>
                                     </p>
