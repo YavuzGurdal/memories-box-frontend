@@ -12,6 +12,8 @@ import { FiLogIn, FiLogOut } from 'react-icons/fi';
 
 import { logOut } from '../actions/userActions';
 
+import jwtDecode from 'jwt-decode'
+
 
 const Header = () => {
     const navigate = useNavigate(); // ana sayfaya donmesi icin
@@ -30,6 +32,18 @@ const Header = () => {
         if (localStorage.getItem('user') && !user) {
             setUser(JSON.parse(localStorage.getItem('user')))
         }
+
+        // jwtdecode
+        const accessToken = user?.accessToken // sadece accessToken varsa bu islemi yapiyor, yoksa hicbirsey yapmiyor. bunu yapmazsam hata veriyor
+
+        if (accessToken) {
+            const decodedAccessToken = jwtDecode(accessToken)
+
+            if (decodedAccessToken.exp * 1000 < new Date().getTime()) { // milisaniye cinsinden karsilastirma yapiyorum
+                exit(user.user._id)
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location, user])
 
     return (
