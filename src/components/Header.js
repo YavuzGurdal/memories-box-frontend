@@ -13,6 +13,7 @@ import { FiLogIn, FiLogOut } from 'react-icons/fi';
 import { logOut } from '../actions/userActions';
 
 import jwtDecode from 'jwt-decode'
+import { getRefreshToken } from '../axios';
 
 
 const Header = () => {
@@ -21,11 +22,18 @@ const Header = () => {
     const dispatch = useDispatch()
     const location = useLocation() // url'i takip ediyor
     const [user, setUser] = useState()
+    const [refreshToken, setRefreshToken] = useState('')
 
     const exit = async (id) => {
         await dispatch(logOut(id))
         setUser(null)
         navigate('/') // ana sayfaya donmesi icin
+    }
+
+    // RefreshToken Function
+    const getToken = async (id) => {
+        const data = await getRefreshToken(id)
+        setRefreshToken(data?.refreshToken)
     }
 
     useEffect(() => { // user state'i bossa ve localstorage'de user varsa localstorage'den user'i alip stateteki user'a atiyor
@@ -43,6 +51,11 @@ const Header = () => {
                 exit(user.user._id)
             }
         }
+
+        if (user) {
+            getToken(user.user._id)
+        }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location, user])
 

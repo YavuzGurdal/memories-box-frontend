@@ -30,3 +30,14 @@ export const signIn = async (formData) => await API.post('/users/signin', formDa
 
 // LOGOUT
 export const logOut = async (id) => await API.get(`/users/logout/${id}`)
+
+// GET REFRESHTOKEN
+export const getRefreshToken = async (userId) => {
+    try {
+        const { data } = await API.get(`/users/gettoken/${userId}`)
+        //console.log(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
