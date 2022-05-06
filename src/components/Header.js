@@ -10,11 +10,9 @@ import { useNavigate } from 'react-router'; // ana sayfaya donmesi icin
 import { FiEdit } from 'react-icons/fi';
 import { FiLogIn, FiLogOut } from 'react-icons/fi';
 
-import { logOut } from '../actions/userActions';
+import { logOut, getAccessToken } from '../actions/userActions.js';
 
 import jwtDecode from 'jwt-decode'
-import { getRefreshToken } from '../axios';
-
 
 const Header = () => {
     const navigate = useNavigate(); // ana sayfaya donmesi icin
@@ -22,7 +20,7 @@ const Header = () => {
     const dispatch = useDispatch()
     const location = useLocation() // url'i takip ediyor
     const [user, setUser] = useState()
-    const [refreshToken, setRefreshToken] = useState('')
+    //const [refreshToken, setRefreshToken] = useState('')
 
     const exit = async (id) => {
         await dispatch(logOut(id))
@@ -31,9 +29,14 @@ const Header = () => {
     }
 
     // RefreshToken Function
-    const getToken = async (id) => {
-        const data = await getRefreshToken(id)
-        setRefreshToken(data?.refreshToken)
+    // const getToken = async (id) => {
+    //     const data = await getRefreshToken(id)
+    //     setRefreshToken(data?.refreshToken)
+    // }
+
+    const renewAccessToken = async (id) => {
+        await dispatch(getAccessToken(id))
+        setUser(JSON.parse(localStorage.getItem('user')))
     }
 
     useEffect(() => { // user state'i bossa ve localstorage'de user varsa localstorage'den user'i alip stateteki user'a atiyor
@@ -41,20 +44,28 @@ const Header = () => {
             setUser(JSON.parse(localStorage.getItem('user')))
         }
 
-        // jwtdecode
-        const accessToken = user?.accessToken // sadece accessToken varsa bu islemi yapiyor, yoksa hicbirsey yapmiyor. bunu yapmazsam hata veriyor
+        const interval = setInterval(() => {
+            // jwtdecode
+            const accessToken = user?.accessToken // sadece accessToken varsa bu islemi yapiyor, yoksa hicbirsey yapmiyor. bunu yapmazsam hata veriyor
 
-        if (accessToken) {
-            const decodedAccessToken = jwtDecode(accessToken)
+            if (accessToken) {
+                const decodedAccessToken = jwtDecode(accessToken)
 
-            if (decodedAccessToken.exp * 1000 < new Date().getTime()) { // milisaniye cinsinden karsilastirma yapiyorum
-                exit(user.user._id)
+                if (decodedAccessToken.exp * 1000 < new Date().getTime()) { // milisaniye cinsinden karsilastirma yapiyorum
+                    //console.log(decodedAccessToken.exp)
+                    renewAccessToken(user?.user?._id)
+                    //exit(user.user._id)
+                }
             }
+        }, 5000)
+
+        return () => {
+            clearInterval(interval)
         }
 
-        if (user) {
-            getToken(user.user._id)
-        }
+        // if (user) {
+        //     getToken(user.user._id)
+        // }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location, user])

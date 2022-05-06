@@ -1,4 +1,4 @@
-import { AUTH, SIGNUP_FAIL, SIGNIN_FAIL, LOGOUT, LOGOUT_FAIL } from "../constants/actionsConstants.js";
+import { AUTH, SIGNUP_FAIL, SIGNIN_FAIL, LOGOUT, LOGOUT_FAIL, REFRESH_ACCESS_TOKEN_ACCESS, REFRESH_ACCESS_TOKEN_FAIL } from "../constants/actionsConstants.js";
 import * as api from '../axios'
 
 export const signup = (formData, navigate) => async (dispatch) => {
@@ -7,7 +7,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
 
         dispatch({ type: AUTH, payload: data }) // reducer'a gonderiyoruz. state guncelleniyor
 
-        dispatch({ type: SIGNUP_FAIL, payload: '' }) // kayit basarili ise error'un icini bosaltiyorum
+        //dispatch({ type: SIGNUP_FAIL, payload: '' }) // kayit basarili ise error'un icini bosaltiyorum
 
         navigate('/'); // ana sayfaya donmesi icin.
     } catch (error) {
@@ -27,7 +27,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
 
         dispatch({ type: AUTH, payload: data })
 
-        dispatch({ type: SIGNIN_FAIL, payload: '' }) // kayit basarili ise error'un icini bosaltiyorum
+        //dispatch({ type: SIGNIN_FAIL, payload: '' }) // kayit basarili ise error'un icini bosaltiyorum
 
         navigate('/'); // ana sayfaya donmesi icin.
     } catch (error) {
@@ -54,5 +54,24 @@ export const logOut = (id) => async (dispatch) => {
                     ? error.response.data.message
                     : error.message
         })
+    }
+}
+
+export const getAccessToken = (id) => async (dispatch) => {
+    try {
+        const { data } = await api.refreshAccessToken(id)
+
+        //console.log(data)
+
+        dispatch({ type: REFRESH_ACCESS_TOKEN_ACCESS, payload: data })
+    } catch (error) {
+        dispatch({
+            type: REFRESH_ACCESS_TOKEN_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        })
+
     }
 }
