@@ -1,16 +1,19 @@
-import { AUTH, SIGNUP_FAIL, SIGNIN_FAIL, LOGOUT, LOGOUT_FAIL, REFRESH_ACCESS_TOKEN_ACCESS, REFRESH_ACCESS_TOKEN_FAIL } from "../constants/actionsConstants.js";
+import { AUTH, SIGNUP_FAIL, SIGNIN_FAIL, LOGOUT, LOGOUT_FAIL, REFRESH_ACCESS_TOKEN_ACCESS, REFRESH_ACCESS_TOKEN_FAIL, AUTH_LOCATION_CHANGE } from "../constants/actionsConstants.js";
 
 const usersReducer = (state = { userData: null }, action) => { // bu sekildede yazabiliriz
     switch (action.type) {
         case AUTH:
             localStorage.setItem('user', JSON.stringify(action.payload)) // localstrage'e user anahtariyla tutuyorum. string olarak tutulmasi lazim
-            return { ...state, userData: action.payload }
+            return { ...state, userData: action.payload, error: null }
 
         case SIGNUP_FAIL:
             return { error: action.payload }
 
         case SIGNIN_FAIL:
             return { error: action.payload }
+
+        case AUTH_LOCATION_CHANGE: // auth'da url degisirse error'u bosaltiyorum
+            return { ...state, error: null }
 
         case LOGOUT: // serverdan bir cevap geldiyse ne yapilacagini yaziyoruz
             localStorage.removeItem('user')

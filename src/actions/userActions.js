@@ -27,7 +27,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
 
         dispatch({ type: AUTH, payload: data })
 
-        //dispatch({ type: SIGNIN_FAIL, payload: '' }) // kayit basarili ise error'un icini bosaltiyorum
+        // dispatch({ type: SIGNIN_FAIL, payload: null }) // kayit basarili ise error'un icini bosaltiyorum
 
         navigate('/'); // ana sayfaya donmesi icin.
     } catch (error) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'; // ana sayfaya donmesi icin
 import Message from '../components/Message'
@@ -6,8 +6,12 @@ import Message from '../components/Message'
 import { useDispatch, useSelector } from 'react-redux' // useSelector ile butun global state'lere ulasabilirim
 import { signup, signin } from '../actions/userActions'
 
+import { useLocation } from 'react-router';
+
 const AuthScreen = () => { // bu Route'dan propsla geliyor.
     const navigate = useNavigate(); // ana sayfaya donmesi icin
+
+    const location = useLocation() // url'i takip ediyor
 
     const initialFormData = {
         firstName: '',
@@ -24,6 +28,16 @@ const AuthScreen = () => { // bu Route'dan propsla geliyor.
     const [login, setLogin] = useState(true)
 
     const dispatch = useDispatch()
+
+    const locationChange = async () => { // dispatch ile type gonderiyorum. usersReducer'da case'i AUTH_LOCATION_CHANGE olan tetikleniyor. bu sekilde state'te degisiklik yapabiliyorum
+        await dispatch({ type: 'AUTH_LOCATION_CHANGE' })
+    }
+
+    useEffect(() => {
+        locationChange()
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location, login])
 
     return (
         <Container>
