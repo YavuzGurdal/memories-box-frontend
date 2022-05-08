@@ -38,9 +38,9 @@ export const updateMemory = (id, updatedMemory) => async (dispatch) => {
     try {
         const { data } = await api.updateMemory(id, updatedMemory)
 
-        //console.log(data)
-
         dispatch({ type: UPDATE, poyload: data })
+
+        //navigate('/') // ana sayfaya donmesi icin.
     } catch (error) {
         console.log(error)
     }

@@ -12,9 +12,9 @@ export default (memories = [], action) => {
 
         case UPDATE:
             return memories.map((memory) =>
-
                 memory._id === action.payload._id ? action.payload : memory
             )
+
         // return memories.forEach((memory) => {
         //     if (memory._id === action.payload._id) {
         //         memory = action.payload

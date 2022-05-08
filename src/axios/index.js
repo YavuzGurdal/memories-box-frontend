@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'http://localhost:8080' }) // bunu surekli ayni seyi yazmamak icin yazdim
+const API = axios.create({ // bunu surekli ayni seyi yazmamak icin yazdim
+    baseURL: 'http://localhost:8080',
+    withCredentials: true, // cookie icin
+})
 
 // AUTHORIZATION
 API.interceptors.request.use((req) => { // burada gonderilen istekle alakali ne yapilacagina karar veriyoruz

@@ -1,4 +1,4 @@
-import { AUTH, SIGNUP_FAIL, SIGNIN_FAIL, LOGOUT, LOGOUT_FAIL, REFRESH_ACCESS_TOKEN_ACCESS, REFRESH_ACCESS_TOKEN_FAIL, AUTH_LOCATION_CHANGE } from "../constants/actionsConstants.js";
+import { AUTH, SIGNUP_FAIL, SIGNIN_FAIL, LOGOUT, LOGOUT_FAIL, REFRESH_ACCESS_TOKEN_SUCCESS, REFRESH_ACCESS_TOKEN_FAIL, AUTH_LOCATION_CHANGE } from "../constants/actionsConstants.js";
 
 const usersReducer = (state = { userData: null }, action) => { // bu sekildede yazabiliriz
     switch (action.type) {
@@ -22,7 +22,7 @@ const usersReducer = (state = { userData: null }, action) => { // bu sekildede y
         case LOGOUT_FAIL:
             return { error: action.payload }
 
-        case REFRESH_ACCESS_TOKEN_ACCESS:
+        case REFRESH_ACCESS_TOKEN_SUCCESS:
 
             const data = { user: state.userData.user, accessToken: action.payload }
 

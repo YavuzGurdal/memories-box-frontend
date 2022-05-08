@@ -37,7 +37,7 @@ const HomeScreen = () => {
         dispatch(fetchMemories()) // fetchMemories action'unu calistiriyorum
         //}
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [memories])
+    }, [dispatch])
 
     return (
         <>

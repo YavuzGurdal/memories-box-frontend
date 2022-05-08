@@ -1,4 +1,4 @@
-import { AUTH, SIGNUP_FAIL, SIGNIN_FAIL, LOGOUT, LOGOUT_FAIL, REFRESH_ACCESS_TOKEN_ACCESS, REFRESH_ACCESS_TOKEN_FAIL } from "../constants/actionsConstants.js";
+import { AUTH, SIGNUP_FAIL, SIGNIN_FAIL, LOGOUT, LOGOUT_FAIL, REFRESH_ACCESS_TOKEN_SUCCESS, REFRESH_ACCESS_TOKEN_FAIL } from "../constants/actionsConstants.js";
 import * as api from '../axios'
 
 export const signup = (formData, navigate) => async (dispatch) => {
@@ -65,7 +65,7 @@ export const getAccessToken = (id) => async (dispatch) => {
 
         //console.log(data)
 
-        dispatch({ type: REFRESH_ACCESS_TOKEN_ACCESS, payload: data })
+        dispatch({ type: REFRESH_ACCESS_TOKEN_SUCCESS, payload: data })
     } catch (error) {
         dispatch({
             type: REFRESH_ACCESS_TOKEN_FAIL,
