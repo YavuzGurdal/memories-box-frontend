@@ -41,11 +41,13 @@ export const signin = (formData, navigate) => async (dispatch) => {
     }
 }
 
-export const logOut = (id) => async (dispatch) => {
+export const logOut = (id, navigate) => async (dispatch) => {
     try {
         const { message } = await api.logOut(id)
 
         dispatch({ type: LOGOUT, payload: message })
+
+        navigate('/'); // ana sayfaya donmesi icin.
     } catch (error) {
         dispatch({
             type: LOGOUT_FAIL,

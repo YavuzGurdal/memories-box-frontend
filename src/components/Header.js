@@ -22,10 +22,10 @@ const Header = () => {
     const [user, setUser] = useState()
     //const [refreshToken, setRefreshToken] = useState('')
 
-    const exit = async (id) => {
-        await dispatch(logOut(id))
+    const exit = async (id, navigate) => {
+        await dispatch(logOut(id, navigate))
         setUser(null)
-        navigate('/') // ana sayfaya donmesi icin
+        //navigate('/') // ana sayfaya donmesi icin
     }
 
     // RefreshToken Function
@@ -99,7 +99,7 @@ const Header = () => {
                                             <Nav.Link>
                                                 <Button
                                                     onClick={(e) => {
-                                                        exit(user.user._id) // burda fonksiyorun cagirip id'yi parametre olarak gonderiyorum
+                                                        exit(user.user._id, navigate) // burda fonksiyorun cagirip id'yi parametre olarak gonderiyorum
                                                     }}
                                                     variant='outline-danger'
                                                 >

@@ -2,6 +2,15 @@ import axios from 'axios'
 
 const API = axios.create({ baseURL: 'http://localhost:8080' }) // bunu surekli ayni seyi yazmamak icin yazdim
 
+// AUTHORIZATION
+API.interceptors.request.use((req) => { // burada gonderilen istekle alakali ne yapilacagina karar veriyoruz
+    if (localStorage.getItem('user')) {
+        req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}` // Bearer -> token'in tipini belirtiyor
+        // isteklerin header kisminda bunu gonderiyorum
+    }
+    return req
+})
+
 // *** burda kullandigim metodlari server -> routers -> memoryRouter.js icinde yazdim. burdan axiosla o metodlari kullanarak serverdan db'ye istek yapiyorum. ve bu islemleri yapiyorum 
 
 // GET ALL MEMORIES
