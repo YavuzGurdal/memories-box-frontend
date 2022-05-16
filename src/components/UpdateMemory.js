@@ -23,6 +23,7 @@ const UpdateMemory = ({ id }) => {
     useEffect(() => { // burda update tusuna basinca id ile db den ilgili id nin diger bilgilerini cekiyorum ve memoryData'yi guncelliyorum
         const getMemory = async () => {
             const { data } = await fetchMemory(id) // response dan gelen data yi direk bu sekilde alabiliyorum
+
             setMemoryData(data)
         }
 
@@ -35,7 +36,9 @@ const UpdateMemory = ({ id }) => {
                 onSubmit={(e) => {
                     e.preventDefault()
                     dispatch(updateMemory(id, memoryData))
-                    navigate('/'); // ana sayfaya donmesi icin.
+                    setTimeout(() => navigate('/'), 1000); // db islemleri zaman aliyor. o yuzden yazdim
+
+                    //navigate('/'); // ana sayfaya donmesi icin.
 
                     // reduxdan once
                     //updateMemory(id, memoryData) // axios icinde tanimladigim fonksiyona id'yi ve memoryData'yi gonderiyorum
@@ -81,7 +84,6 @@ const UpdateMemory = ({ id }) => {
                 </Form.Group>
                 <Button type='submit' className='mt-3 w-100' size="lg" style={{ letterSpacing: '1.5px' }}>Submit</Button>
             </Form>
-
         </>
     )
 }
